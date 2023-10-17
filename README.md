@@ -1,6 +1,6 @@
-[![Blog Personal]()]()
+[![Blog Personal](https://github.com/joyelocode/movie-app/blob/main/src/assets/movie-app.png)](https://joyelocode.github.io/movie-app/)
 
-# Proyectos Css Componentes Web
+# Proyecto MovieDB
 
 Este repositorio contiene el proyecto MovieDB que he creado siguiendo el tutorial del YouTuber [Reza Mehdikhanlou](https://www.youtube.com/@AsmrProg/about).
 
