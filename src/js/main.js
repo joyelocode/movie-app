@@ -1,14 +1,29 @@
 const apiKey = '174adc51d8f19be240a958a5c42d2c8e';
+// Definir una constante para la clave de API de TMDb.
+
 const imgApi = 'https://image.tmdb.org/t/p/w1280';
+// Definir una constante para la URL base de las imágenes de películas.
+
 const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
+// Definir una constante para la URL de búsqueda de películas en TMDb, incluyendo la clave de API.
+
 const form = document.getElementById('search-form');
+// Obtener una referencia al elemento del formulario con el id 'search-form'.
+
 const query = document.getElementById('search-input');
+// Obtener una referencia al elemento de entrada de búsqueda con el id 'search-input'.
+
 const result = document.getElementById('result');
+// Obtener una referencia al elemento donde se mostrarán los resultados de búsqueda con el id 'result'.
 
 let page = 1;
+// Inicializar una variable para rastrear la página actual de resultados.
+
 let isSearching = false;
+// Inicializar una variable para evitar múltiples búsquedas simultáneas.
 
 //Fetch JSON data from Url
+// Función para realizar una solicitud de red a una URL y devolver los datos en formato JSON.
 
 async function fetchData(url) {
     try {
@@ -23,6 +38,7 @@ async function fetchData(url) {
 }
 
 // Fetch and show results based on url
+// Función para obtener datos de películas desde una URL y mostrar los resultados.
 
 async function fetchAndShowResult(url) {
     const data = await fetchData(url);
@@ -32,6 +48,7 @@ async function fetchAndShowResult(url) {
 }
 
 // Create movie card html template
+// Función para crear una plantilla HTML para mostrar información sobre una película.
 
 function createMovieCard(movie) {
     const { poster_path, original_title, release_date, overview } = movie;
@@ -64,12 +81,14 @@ function createMovieCard(movie) {
 }
 
 // Clear result element for search
+// Función para borrar el contenido del elemento 'result' y prepararlo para nuevos resultados.
 
 function clearResults() {
     result.innerHTML = '';
 }
 
 // Show results in page
+// Función para mostrar los resultados de búsqueda en la página.
 
 function showResults(item) {
     const newContent = item.map(createMovieCard).join('');
@@ -77,6 +96,7 @@ function showResults(item) {
 }
 
 // Load More results
+// Función para cargar más resultados de búsqueda.
 
 async function loadMoreResults() {
     if (isSearching) {
@@ -89,6 +109,7 @@ async function loadMoreResults() {
 }
 
 // Detect end of page and load more results
+// Función para detectar cuándo el usuario llega al final de la página y cargar más resultados.
 
 function detectEnd() {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
@@ -98,6 +119,7 @@ function detectEnd() {
 }
 
 // Handle search
+// Función para manejar la búsqueda de películas cuando el usuario envía el formulario.
 
 async function handleSearch(e) {
     e.preventDefault();
@@ -112,12 +134,14 @@ async function handleSearch(e) {
 }
 
 // Event listeners
+// Agregar event listeners para escuchar eventos en el formulario, desplazamiento y redimensionamiento de la ventana.
 
 form.addEventListener('submit', handleSearch);
 window.addEventListener('scroll', detectEnd);
 window.addEventListener('resize', detectEnd);
 
 // Initialize the page
+// Inicializar la página y mostrar resultados populares de películas.
 
 async function init() {
     clearResults();
